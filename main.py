@@ -72,7 +72,7 @@ class ChatRequest(BaseModel):
 
 @app.post("/chat")
 async def chat(request: ChatRequest):
-    response = multi_ai_agent.get_response(request.message)
+    response = multi_ai_agent.print_response(request.message)
     return {"response": response}
 
 # Health check (optional)

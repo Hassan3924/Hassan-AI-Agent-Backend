@@ -72,8 +72,17 @@ class ChatRequest(BaseModel):
 
 @app.post("/chat")
 async def chat(request: ChatRequest):
-    response = multi_ai_agent.print_response(request.message)
-    return {"response": response}
+    try:
+        result = multi_ai_agent.run(request.message)
+
+        # Safely extract the actual text message
+        if hasattr(result, "content") and result.content:
+            response = result.content
+        else:
+            response = str(result)
+            
+    except Exception as e:
+        return {"error": f"An error occurred: {str(e)}"}
 
 # Health check (optional)
 @app.get("/")

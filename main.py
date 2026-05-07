@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-model_name = "llama-3.3-70b-versatile"
+model_name = "qwen/qwen3-32b"
 
 load_dotenv()
 
